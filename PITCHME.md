@@ -1,9 +1,11 @@
+@title[Some custom label]
 @snap[north-west]
 North-East
 @snapend
 
 ---
 
+@title[Some custom label222]
 @snap[north-west]
 North-East
 @snapend
@@ -13,6 +15,7 @@ North-East
 
 ---
 
+@title[Some custom label33333]
 @snap[north-west]
 North-East
 @snapend
