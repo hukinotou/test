@@ -1,20 +1,16 @@
-@title[Some custom label]  
-@snap[north-west]  
-North-East  
-@snapend
+### 1時間で作るlaravelアプリケーション
 
 ---
 
-@title[Some custom label222]
-@snap[north-west]
-North-East
-@snapend
+### 目次
 
-@box[](適当な英数字の文字列を沢山作るのは意外と面倒なものです。これで一気に作成します。)
-
----
-
-@title[Some custom label33333]
-@snap[north-west]
-North-East
-@snapend
+- 今回のゴール
+- 命名規則
+- ファイルの役割
+- コーディング
+-- ファイルの生成
+--- コントローラー
+--- モデル
+--- マイグレーション
+--- ビュー
+--- ルーティング
