@@ -1,10 +1,10 @@
-@snap[north-east]
+@snap[north-west]
 North-East
 @snapend
 
 ---
 
-@snap[north-east]
+@snap[north-west]
 North-East
 @snapend
 
@@ -13,6 +13,6 @@ North-East
 
 ---
 
-@snap[north-east]
+@snap[north-west]
 North-East
 @snapend
