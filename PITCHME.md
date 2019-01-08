@@ -264,14 +264,6 @@ php artisan make:controller -r ThreadController
 
 @size[0.7em](`app/Http/Controllers/ThreadController.php` のファイルが生成されます)
 
-+++
-
-@snap[north-west]
-コントローラーの作成
-@snapend
-
-#### コントローラーの実装
-
----?code=ThreadController.php&lang=php
++++?code=ThreadController.php&lang=php&title=コントローラーの実装
 @[9-11](fillableを定義します)
 
