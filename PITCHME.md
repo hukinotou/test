@@ -77,5 +77,32 @@
 | 複数/単数 | 単数形 |
 | 例 | User |
 
-@size[1em](※ 標準では`app`ですが、今回は`app/Models`としました)
+@size[0.7em](※ 標準では`app`ですが、今回は`app/Models`としました)
 
++++
+
+@snap[north-west]
+命名規則
+@snapend
+
+### DBテーブル
+
+| 項目 | 値 |
+|---|---|
+| 書き方 | スネークケース |
+| 複数/単数 | 複数形 |
+| 例 | users |
+
++++
+
+@snap[north-west]
+命名規則
+@snapend
+
+### URL
+
+| 項目 | 値 |
+|---|---|
+| 書き方 | ハイフネーション |
+| 複数/単数 | 複数形 |
+| 例 | http://example.com/users/3 |
