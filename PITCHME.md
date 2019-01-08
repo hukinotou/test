@@ -265,10 +265,135 @@ php artisan make:controller -r ThreadController
 @size[0.7em](`app/Http/Controllers/ThreadController.php` のファイルが生成されます)
 
 +++?code=ThreadController.php&lang=php&title=ThreadController.php
-@[16-20](一覧取得処理)
+@[16-20](一覧取得処理 取得したスレッド一覧`$threads`をviewへ渡します)
 @[27-30](作成画面の表示)
-@[38-45](新規登録処理)
+@[38-45](新規登録処理 fillではモデルのfillableで指定したデータのみ取り込まれます)
 @[53-56](スレッド表示)
 @[64-67](スレッド編集画面)
 @[76-82](スレッド更新処理)
 @[90-95](スレッド削除処理)
+
+---
+
+### ビューの作成
+
++++
+
+@snap[north-west]
+ビューの作成
+@snapend
+
+#### ファイルの生成
+
+`resources/views/threads`へビューファイルを作成します。  
+コマンドはないため、手動で作成します。
+
+[Bladeテンプレート](https://readouble.com/laravel/5.7/ja/blade.html)を利用します。  
+`{{ $thread->subject }}`のように波カッコで囲うとエスケープされて出力されます。  
+そのほか、`@if`、`@for`、`@foreach`などが用意されています。
+
+---
+
+### response系のファイル生成
+
++++
+
+@snap[north-west]
+response系のファイル生成
+@snapend
+
+#### ファイル生成
+
+```
+php artisan make:model -c -r -m Response
+```
+
+上記のコマンドで下記のファイルが生成されます
+
+- `database/migrations/2018_12_09_132732_create_responses_table.php`
+- `app/Models/Response.php`
+- `app/Http/Controllers/ResponseController.php`
+
++++
+
+@snap[north-west]
+response系のファイル生成
+@snapend
+
+#### ファイル実装
+
+時間がないため、事前に用意していたファイルをコピーします  
+ビューファイルもコピーします
+
+---
+
+### リレーション
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+#### 関係性
+
+`threads`テーブルと`responses`テーブルは1対多の関係です  
+モデルに定義をすることで自動的に関連するデータを取得することができます
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+#### Thread.php実装
+
+```
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Thread extends Model
+{
+    protected $fillable = [
+        'subject',
+    ];
+
+    public function responses()
+    {
+        return $this->hasMany('App\Models\Response');
+    }
+}
+```
+@[13-16](スレッドから見てレスポンスは1対多の関係なので、`hasMany`を定義します)
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+#### Response.php実装
+
+```
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Response extends Model
+{
+    protected $fillable = [
+        'response',
+    ];
+
+    public function thread()
+    {
+        return $this->belongsTo('App\Models\Thread');
+    }
+}
+```
+@[13-16](レスポンスから見てスレッドは多対1の関係なので、`belongsTo`を定義します)
