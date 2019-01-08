@@ -155,4 +155,21 @@ DB構造
 php artisan make:migration create_threads_table
 ```
 
----?code=src/server.go&lang=golang
+`database/migrations/2018_12_09_053117_create_threads_table.php` のファイルが生成されます
+
++++
+
+@snap[north-west]
+マイグレーションファイルの作成
+@snapend
+
+```
+public function up()
+{
+    Schema::create('threads', function (Blueprint $table) {
+        $table->increments('id');
+        $table->text('subject');
+        $table->timestamps();
+    });
+}
+```
