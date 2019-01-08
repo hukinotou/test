@@ -120,14 +120,20 @@
 DB構造
 @snapend
 
-threads テーブル
+#### threads テーブル
 
 | カラム名 | 型 | 主キー |
 |---|---|---|
 | id | int | ○ |
 | subject | text | |
 
-responses テーブル
++++
+
+@snap[north-west]
+DB構造
+@snapend
+
+#### responses テーブル
 
 | カラム名 | 型 | 主キー |
 |---|---|---|
