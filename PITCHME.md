@@ -19,6 +19,8 @@
 今回のゴール
 @snapend
 
+#### 今回のゴール
+
 ライブコーディングで掲示板の作成を行い、簡単なアプリケーションの作成の流れを理解する。  
 
 +++
@@ -26,6 +28,8 @@
 @snap[north-west]
 今回のゴール
 @snapend
+
+#### 成果物
 
 作成する掲示板  
 [http://192.168.1.124/laravel-bbs/public/](http://192.168.1.124/laravel-bbs/public/)
@@ -146,6 +150,8 @@ DB構造
 ### 製造
 
 - マイグレーション
+- モデルの作成
+- コントローラーの作成
 
 ---
 
@@ -156,6 +162,8 @@ DB構造
 @snap[north-west]
 マイグレーション
 @snapend
+
+#### ファイルの生成
 
 ```
 php artisan make:migration create_threads_table
@@ -168,6 +176,8 @@ php artisan make:migration create_threads_table
 @snap[north-west]
 マイグレーション
 @snapend
+
+#### カラムの定義
 
 ```
 public function up()
@@ -187,6 +197,81 @@ public function up()
 マイグレーション
 @snapend
 
+#### マイグレーションの実行
+
 ```
 php artisan migrate
 ```
+
+---
+
+### モデルの作成
+
++++
+
+@snap[north-west]
+モデルの作成
+@snapend
+
+#### ファイルの生成
+
+```
+php artisan make:model Models/Thread
+```
+
+@size[0.7em](`app/Models/Thread.php` のファイルが生成されます)
+
++++
+
+@snap[north-west]
+モデルの作成
+@snapend
+
+#### モデルの実装
+
+```
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Thread extends Model
+{
+    protected $fillable = [
+        'subject',
+    ];
+}
+```
+@[9-11](fillableを定義します)
+
+
+---
+
+### コントローラーの作成
+
++++
+
+@snap[north-west]
+コントローラーの作成
+@snapend
+
+#### ファイルの生成
+
+```
+php artisan make:controller -r ThreadController
+```
+
+@size[0.7em](`app/Http/Controllers/ThreadController.php` のファイルが生成されます)
+
++++
+
+@snap[north-west]
+コントローラーの作成
+@snapend
+
+#### コントローラーの実装
+
+---?code=---?code=src/server.go&lang=golang&lang=php
+@[9-11](fillableを定義します)
+
