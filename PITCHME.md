@@ -120,18 +120,12 @@
 DB構造
 @snapend
 
-@snap[west span-50]
-
 threads テーブル
 
 | カラム名 | 型 | 主キー |
 |---|---|---|
 | id | int | ○ |
 | subject | text | |
-
-@snapend
-
-@snap[east span-50]
 
 responses テーブル
 
@@ -140,5 +134,3 @@ responses テーブル
 | id | int | ○ |
 | thread_id | int | |
 | response | text | |
-
-@snapend
