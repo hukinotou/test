@@ -120,7 +120,8 @@
 DB構造
 @snapend
 
-@snap[west]
+@snap[west span-50]
+
 threads テーブル
 
 | カラム名 | 型 | 主キー |
@@ -130,7 +131,8 @@ threads テーブル
 
 @snapend
 
-@snap[east]
+@snap[east span-50]
+
 responses テーブル
 
 | カラム名 | 型 | 主キー |
