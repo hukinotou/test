@@ -143,24 +143,30 @@ DB構造
 
 ---
 
-### マイグレーションファイルの作成
+### 製造
+
+- マイグレーション
+
+---
+
+### マイグレーション
 
 +++
 
 @snap[north-west]
-マイグレーションファイルの作成
+マイグレーション
 @snapend
 
 ```
 php artisan make:migration create_threads_table
 ```
 
-`database/migrations/2018_12_09_053117_create_threads_table.php` のファイルが生成されます
+@size[0.7em](`database/migrations/2018_12_09_053117_create_threads_table.php` のファイルが生成されます)
 
 +++
 
 @snap[north-west]
-マイグレーションファイルの作成
+マイグレーション
 @snapend
 
 ```
@@ -173,4 +179,14 @@ public function up()
     });
 }
 ```
-@[5]
+@[5](subjectをtext型で定義します)
+
++++
+
+@snap[north-west]
+マイグレーション
+@snapend
+
+```
+php artisan migrate
+```
