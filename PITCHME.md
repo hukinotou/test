@@ -122,17 +122,21 @@ DB構造
 
 @snap[west]
 threads テーブル
+
 | カラム名 | 型 | 主キー |
 |---|---|---|
 | id | int | ○ |
 | subject | text | |
+
 @snapend
 
 @snap[east]
 responses テーブル
+
 | カラム名 | 型 | 主キー |
 |---|---|---|
 | id | int | ○ |
 | thread_id | int | |
 | response | text | |
+
 @snapend
