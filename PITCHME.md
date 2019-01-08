@@ -20,9 +20,17 @@
 
 ライブコーディングで掲示板の作成を行い、簡単なアプリケーションの作成の流れを理解する。  
 
-作成する掲示板：[http://192.168.1.124/laravel-bbs/public/](http://192.168.1.124/laravel-bbs/public/)
++++
 
-ソースコード：[https://github.com/hukinotou/laravel-bbs](https://github.com/hukinotou/laravel-bbs)
+@snap[north-west]
+今回のゴール
+@snapend
+
+作成する掲示板  
+[http://192.168.1.124/laravel-bbs/public/](http://192.168.1.124/laravel-bbs/public/)
+
+ソースコード  
+[https://github.com/hukinotou/laravel-bbs](https://github.com/hukinotou/laravel-bbs)
 
 +++
 
