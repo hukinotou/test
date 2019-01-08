@@ -6,6 +6,7 @@
 
 - 今回のゴール
 - 命名規則
+- DB構造
 - コーディング
 
 ---
@@ -106,3 +107,32 @@
 | 書き方 | ハイフネーション |
 | 複数/単数 | 複数形 |
 | 例 | http://example.com/users/3 |
+
+---
+
+### DB構造
+
+@size[0.7em](今回はSQLiteを使用します)
+
++++
+
+@snap[north-west]
+DB構造
+@snapend
+
+@snap[west]
+threads テーブル
+| カラム名 | 型 | 主キー |
+|---|---|---|
+| id | int | ○ |
+| subject | text | |
+@snapend
+
+@snap[east]
+responses テーブル
+| カラム名 | 型 | 主キー |
+|---|---|---|
+| id | int | ○ |
+| thread_id | int | |
+| response | text | |
+@snapend
