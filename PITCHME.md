@@ -272,6 +272,6 @@ php artisan make:controller -r ThreadController
 
 #### コントローラーの実装
 
----?code=---?code=ThreadController.php&lang=php
+---?code=ThreadController.php&lang=php
 @[9-11](fillableを定義します)
 
