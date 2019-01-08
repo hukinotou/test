@@ -140,3 +140,19 @@ DB構造
 | id | int | ○ |
 | thread_id | int | |
 | response | text | |
+
+---
+
+### マイグレーションファイルの作成
+
++++
+
+@snap[north-west]
+マイグレーションファイルの作成
+@snapend
+
+```
+php artisan make:migration create_threads_table
+```
+
+---?code=src/server.go&lang=golang
