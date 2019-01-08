@@ -18,10 +18,10 @@
 今回のゴール
 @snapend
 
-ライブコーディングで掲示板の作成を行い、  
-簡単なアプリケーションの作成の流れを理解する。  
+ライブコーディングで掲示板の作成を行い、簡単なアプリケーションの作成の流れを理解する。  
 
 作成する掲示板：[http://192.168.1.124/laravel-bbs/public/](http://192.168.1.124/laravel-bbs/public/)
+
 ソースコード：[https://github.com/hukinotou/laravel-bbs](https://github.com/hukinotou/laravel-bbs)
 
 +++
@@ -47,10 +47,12 @@
 
 ### コントローラー
 
-namespace: `app/Http/Controllers`  
-書き方： パスカルケース + Controller  
-複数/単数：単数形  
-例：UserController
+| 項目 | 値 |
+|---|---|
+| namespace |  `app/Http/Controllers` |
+| 書き方 | パスカルケース + Controller |
+| 複数/単数 | 単数形 |
+| 例 | UserController |
 
 +++
 
@@ -60,9 +62,12 @@ namespace: `app/Http/Controllers`
 
 ### モデル
 
-namespace: `app`  
-標準では`app`となるが、今回は`app/Models`としました
-書き方： パスカルケース  
-複数/単数：単数形  
-例：User
+| 項目 | 値 |
+|---|---|
+| namespace |  `app` ※ |
+| 書き方 | パスカルケース |
+| 複数/単数 | 単数形 |
+| 例 | User |
+
+※ 標準では`app`となるが、今回は`app/Models`としました
 
