@@ -264,6 +264,11 @@ php artisan make:controller -r ThreadController
 
 @size[0.7em](`app/Http/Controllers/ThreadController.php` のファイルが生成されます)
 
-+++?code=ThreadController.php&lang=php&title=コントローラーの実装
-@[9-11](fillableを定義します)
-
++++?code=ThreadController.php&lang=php&title=ThreadController.php
+@[16-20](一覧取得処理)
+@[27-30](作成画面の表示)
+@[38-45](新規登録処理)
+@[53-56](スレッド表示)
+@[64-67](スレッド編集画面)
+@[76-82](スレッド更新処理)
+@[90-95](スレッド削除処理)
