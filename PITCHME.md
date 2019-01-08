@@ -349,12 +349,6 @@ response系のファイル生成
 #### Thread.php実装
 
 ```
-<?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
 class Thread extends Model
 {
     protected $fillable = [
@@ -367,7 +361,7 @@ class Thread extends Model
     }
 }
 ```
-@[13-16](スレッドから見てレスポンスは1対多の関係なので、`hasMany`を定義します)
+@[7-10](スレッドから見てレスポンスは1対多の関係なので、`hasMany`を定義します)
 
 +++
 
@@ -378,12 +372,6 @@ class Thread extends Model
 #### Response.php実装
 
 ```
-<?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
 class Response extends Model
 {
     protected $fillable = [
@@ -396,4 +384,4 @@ class Response extends Model
     }
 }
 ```
-@[13-16](レスポンスから見てスレッドは多対1の関係なので、`belongsTo`を定義します)
+@[7-10](レスポンスから見てスレッドは多対1の関係なので、`belongsTo`を定義します)
