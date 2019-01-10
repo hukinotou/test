@@ -442,11 +442,21 @@ public function index()
 ```
 @forelse ($threads as $thread)
     <tr>
-        <th scope="row">{{ $thread->id }}</th>
-        <td><a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a></td>
-        <td>{{ $thread->responses_count }}</td>
-        <td>{{ $thread->created_at }}</td>
-        <td>{{ $thread->updated_at }}</td>
+        <th scope="row">
+            {{ $thread->id }}
+        </th>
+        <td>
+            <a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a>
+        </td>
+        <td>
+            {{ $thread->responses_count }}
+        </td>
+        <td>
+            {{ $thread->created_at }}
+        </td>
+        <td>
+            {{ $thread->updated_at }}
+        </td>
 ```
 @[5](`$thread->responses_count`でレスポンス数が取得できます)
 
