@@ -437,6 +437,14 @@ public function index()
 ```
 @[3](`withCount`を利用することで`responses_count`としてレスポンス数を取得できます)
 
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+### N+1問題解決
+
 #### index.blade.php
 
 ```
