@@ -370,6 +370,8 @@ laravelでは擬似的にmethodを変更する仕組みがあります
 モデル結合ルート
 @snapend
 
+#### 暗黙の結合
+
 ```
 Route::get('/threads/{thread}', 'ThreadController@show');
 ```
@@ -380,6 +382,8 @@ public function show(Thread $thread)
     return view('threads.show', ['thread' => $thread]);
 }
 ```
+
+@size[0.7em](`/threads/34`というURLにアクセスした場合、`threads`テーブルから`id`が34のレコードを取得し、`threadController`の`show`アクションへ渡されます)
 
 ---
 
@@ -579,3 +583,104 @@ select
     ) as responses_count
 from threads
 ```
+---
+
+### バリデーション
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### ファイルの生成
+
+```
+php artisan make:make:request -r StoreThread
+```
+
+@size[0.7em](`app/Http/Requests/StoreThread.php` のファイルが生成されます)
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### StoreThread.php実装
+
+```
+public function authorize()
+{
+    return true;
+}
+```
+@size[0.7em](更新対象のデータに対して更新権限があるかのチェックなどを行う関数です。今回は制限を設けないため`true`を返します)
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### StoreThread.php実装
+
+```
+public function rules()
+{
+    return [
+        'subject' => 'required|max:20',
+    ];
+}
+```
+@size[0.7em](`subject`に対して必須`required`と最大長`max`を設定します)
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### ThreadController.php実装
+
+```
+public function store(StoreThread $request)
+{
+    $thread = new Thread;
+    $thread->fill($request->all());
+    $thread->save();
+
+    return redirect('threads');
+}
+```
+@[1](`Request`の代わりに、`StoreThread`を利用することで自動的にバリデーションが実行されます)
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### ビュー実装
+
+```
+<input type="txt" name="subject" value="{{ old('subject', $thread->subject) }}">
+@if ($errors->has('subject'))
+    {{ $errors->first('subject') }}
+@endif
+```
+@[1](`old`関数を利用することでバリデーションエラー時に入力値の復元がされます。第二引数には編集画面で利用する初期値を設定できます)
+@[2-4](エラーの有無を判定し、エラーメッセージを表示します)
+
++++
+
+@snap[north-west]
+バリデーション
+@snapend
+
+#### ビュー実装
+
+```
+class="@if ($errors->has('subject')) is-invalid @endif"
+```
+@size[0.7em](上記のようにすることでエラー時に`is-invalid`classを追加することもできます)
