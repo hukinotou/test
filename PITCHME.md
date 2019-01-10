@@ -402,16 +402,6 @@ class Response extends Model
         <td>{{ count($thread->responses) }}</td>
         <td>{{ $thread->created_at }}</td>
         <td>{{ $thread->updated_at }}</td>
-        <td><a href="{{ url('threads/' . $thread->id . '/edit') }}" class="btn btn-outline-secondary">編集</a></td>
-        <td>
-            @component('threads.components.btn-delete')
-                @slot('id', $thread->id)
-            @endcomponent
-        </td>
-    </tr>
-@empty
-    <tr><td colspan="2">データなし</td></tr>
-@endforelse
 ```
 @[5](threadsテーブルにはresponseカラムはありません。`Thread`モデルで定義した`hasMany`定義によってレスポンスの情報が取得されます)
 
@@ -457,16 +447,6 @@ public function index()
         <td>{{ $thread->responses_count }}</td>
         <td>{{ $thread->created_at }}</td>
         <td>{{ $thread->updated_at }}</td>
-        <td><a href="{{ url('threads/' . $thread->id . '/edit') }}" class="btn btn-outline-secondary">編集</a></td>
-        <td>
-            @component('threads.components.btn-delete')
-                @slot('id', $thread->id)
-            @endcomponent
-        </td>
-    </tr>
-@empty
-    <tr><td colspan="2">データなし</td></tr>
-@endforelse
 ```
 @[5](`$thread->responses_count`でレスポンス数が取得できます)
 
