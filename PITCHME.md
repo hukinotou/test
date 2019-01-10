@@ -395,15 +395,10 @@ class Response extends Model
 ### リレーションの利用方法
 
 ```
-@forelse ($threads as $thread)
-    <tr>
-        <th scope="row">{{ $thread->id }}</th>
-        <td><a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a></td>
-        <td>{{ count($thread->responses) }}</td>
-        <td>{{ $thread->created_at }}</td>
-        <td>{{ $thread->updated_at }}</td>
+<td>{{ count($thread->responses) }}</td>
 ```
-@[5](threadsテーブルにはresponseカラムはありません。`Thread`モデルで定義した`hasMany`定義によってレスポンスの情報が取得されます)
+threadsテーブルにはresponseカラムはありません。  
+`Thread`モデルで定義した`hasMany`定義によってレスポンスの情報が取得されます
 
 +++
 
@@ -448,25 +443,9 @@ public function index()
 #### index.blade.php
 
 ```
-@forelse ($threads as $thread)
-    <tr>
-        <th scope="row">
-            {{ $thread->id }}
-        </th>
-        <td>
-            <a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a>
-        </td>
-        <td>
-            {{ $thread->responses_count }}
-        </td>
-        <td>
-            {{ $thread->created_at }}
-        </td>
-        <td>
-            {{ $thread->updated_at }}
-        </td>
+{{ $thread->responses_count }}
 ```
-@[5](`$thread->responses_count`でレスポンス数が取得できます)
+`$thread->responses_count`でレスポンス数が取得できます
 
 +++
 
