@@ -385,3 +385,103 @@ class Response extends Model
 }
 ```
 @[7-10](レスポンスから見てスレッドは多対1の関係なので、`belongsTo`を定義します)
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+### リレーションの利用方法
+
+```
+@forelse ($threads as $thread)
+    <tr>
+        <th scope="row">{{ $thread->id }}</th>
+        <td><a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a></td>
+        <td>{{ count($thread->responses) }}</td>
+        <td>{{ $thread->created_at }}</td>
+        <td>{{ $thread->updated_at }}</td>
+        <td><a href="{{ url('threads/' . $thread->id . '/edit') }}" class="btn btn-outline-secondary">編集</a></td>
+        <td>
+            @component('threads.components.btn-delete')
+                @slot('id', $thread->id)
+            @endcomponent
+        </td>
+    </tr>
+@empty
+    <tr><td colspan="2">データなし</td></tr>
+@endforelse
+```
+@[5](threadsテーブルにはresponseカラムはありません。`Thread`モデルで定義した`hasMany`定義によってレスポンスの情報が取得されます)
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+### N+1問題
+
+スレッドの件数分だけレスポンスを`count`するSQLが発行されてしまいます。
+
+- スレッドの一覧情報を取得するSQL＠1本
+- スレッドごとのレスポンス数を取得するSQL＠N本
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+### N+1問題解決
+
+#### ThreadController.php
+
+```
+public function index()
+{
+    $threads = Thread::withCount('responses')->get();
+    return view('threads.index', ['threads' => $threads]);
+}
+```
+@[3](`withCount`を利用することで`responses_count`としてレスポンス数を取得できます)
+
+#### index.blade.php
+
+```
+@forelse ($threads as $thread)
+    <tr>
+        <th scope="row">{{ $thread->id }}</th>
+        <td><a href="{{ url('threads/' . $thread->id) }}">{{ $thread->subject }}</a></td>
+        <td>{{ $thread->responses_count }}</td>
+        <td>{{ $thread->created_at }}</td>
+        <td>{{ $thread->updated_at }}</td>
+        <td><a href="{{ url('threads/' . $thread->id . '/edit') }}" class="btn btn-outline-secondary">編集</a></td>
+        <td>
+            @component('threads.components.btn-delete')
+                @slot('id', $thread->id)
+            @endcomponent
+        </td>
+    </tr>
+@empty
+    <tr><td colspan="2">データなし</td></tr>
+@endforelse
+```
+@[5](`$thread->responses_count`でレスポンス数が取得できます)
+
++++
+
+@snap[north-west]
+リレーション
+@snapend
+
+### 実行されるSQL
+
+```
+select * from threads
+```
+
+```
+select threads.*, (select count(*) from responses where threads.id = responses.thread_id) as responses_count from threads
+```
