@@ -304,6 +304,8 @@ php artisan make:controller -r ThreadController
 ルーティング
 @snapend
 
+#### ルーティングとは
+
 モデル、コントローラー、ビューを用意しただけではlaravelは動きません  
 URLとコントローラーのメソッドを紐づける必要があります
 
@@ -328,7 +330,62 @@ Route::resource('threads', 'ThreadController');
 ルーティング
 @snapend
 
+#### laravelでの標準的なルーティング
 
+| 処理 | method | URI | アクション |
+|---|---|---|---|
+| 一覧表示 | GET | /threads | index |
+| 作成画面 | GET | /threads/create | create |
+| 登録処理 | POST | /threads | store |
+| 詳細表示 | GET | /threads/{thread} | show |
+| 編集画面 | GET | /threads/{thread}/edit | edit |
+| 更新処理 | PUT/PATCH | /threads/{thread} | update |
+| 削除処理 | DELETE | /threads/{thread} | destroy |
+
++++
+
+@snap[north-west]
+ルーティング
+@snapend
+
+### PUT? PATCH? DELETE?
+
+HTMLではGETもしくはPOSTのみしか利用できません  
+laravelでは擬似的にmethodを変更する仕組みがあります
+
+```
+<form action="/foo/bar" method="POST">
+    @method('PUT')
+</form>
+```
+@[1](`PUT`で送信されたと認識します)
+
+---
+
+### モデル結合ルート
+
++++
+
+@snap[north-west]
+モデル結合ルート
+@snapend
+
+```
+Route::get('/threads/{thread}', 'ThreadController@show');
+```
+
+```
+public function show(Thread $thread)
+{
+    return view('threads.show', ['thread' => $thread]);
+}
+```
+
+---
+
+### 動かしてみよう！
+
+スレッドのCRUDができたので、動かしてみましょう
 
 ---
 
@@ -362,6 +419,21 @@ response系のファイル生成
 
 時間がないため、事前に用意していたファイルをコピーします  
 ビューファイルもコピーします
+
++++
+
+@snap[north-west]
+response系のファイル生成
+@snapend
+
+#### ルーティング
+
+```
+Route::post('threads/{thread}', 'ResponseController@store')->name('response.store');
+Route::resource('response', 'ResponseController', ['only' => ['update', 'edit', 'destroy']]);
+```
+@[1](スレッドに紐づくレスポンスを表示します)
+@[2](レスポンスのCRUDを用意しますが、`only`オプションで利用するアクションを制限します)
 
 ---
 
