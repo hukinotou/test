@@ -152,6 +152,8 @@ DB構造
 - マイグレーション
 - モデルの作成
 - コントローラーの作成
+- ルーティング
+- リレーション
 
 ---
 
@@ -291,6 +293,42 @@ php artisan make:controller -r ThreadController
 [Bladeテンプレート](https://readouble.com/laravel/5.7/ja/blade.html)を利用します。  
 `{{ $thread->subject }}`のように波カッコで囲うとエスケープされて出力されます。  
 そのほか、`@if`、`@for`、`@foreach`などが用意されています。
+
+---
+
+### ルーティング
+
++++
+
+@snap[north-west]
+ルーティング
+@snapend
+
+モデル、コントローラー、ビューを用意しただけではlaravelは動きません  
+URLとコントローラーのメソッドを紐づける必要があります
+
++++
+
+@snap[north-west]
+ルーティング
+@snapend
+
+### routes/web.php
+
+``` php
+Route::get('/', 'ThreadController@index');
+Route::resource('threads', 'ThreadController');
+```
+@[1]('/'にアクセスされたときの設定をします。ここではスレッド一覧を表示します。)
+@[2](`Route::resource`を宣言することで基本的なCRUDのルーティングが追加されます)
+
++++
+
+@snap[north-west]
+ルーティング
+@snapend
+
+
 
 ---
 
@@ -460,5 +498,12 @@ select * from threads
 ```
 
 ```
-select threads.*, (select count(*) from responses where threads.id = responses.thread_id) as responses_count from threads
+select
+    threads.*,
+    (
+        select count(*) 
+        from responses 
+        where threads.id = responses.thread_id
+    ) as responses_count
+from threads
 ```
